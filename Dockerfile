@@ -7,8 +7,13 @@ ARG TARGETARCH=amd64
 FROM willhallonline/ansible:alpine
 ARG APK_MAIN
 ARG APK_COMMUNITY
+ARG HELM_VERSION
+ARG TARGETOS
+ARG TARGETARCH
 ENV APK_MAIN=${APK_MAIN} \
     APK_COMMUNITY=${APK_COMMUNITY}
+
+
 
 RUN rm /etc/apk/repositories; \
     echo $APK_MAIN > /etc/apk/repositories; \
@@ -23,7 +28,8 @@ RUN apk upgrade; \
       ca-certificates \
       curl
 
-RUN wget -q https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -O - | tar -xzO ${TARGETOS}-${TARGETARCH}/helm > /usr/local/bin/helm; \
+RUN wget -q https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -O - | tar -xzO ${TARGETOS}-${TARGETARCH}/helm > /usr/local/bin/helm \
+    ; \
     chmod +x /usr/local/bin/helm; \
     mkdir /config ;\
     chmod g+rwx /config /root ;
