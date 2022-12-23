@@ -26,7 +26,8 @@ RUN apk upgrade; \
 	  apk add --no-cache \
       wget \
       ca-certificates \
-      curl
+      curl \
+      make
 
 RUN wget -q https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -O - | tar -xzO ${TARGETOS}-${TARGETARCH}/helm > /usr/local/bin/helm \
     ; \
