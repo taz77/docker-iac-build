@@ -24,7 +24,8 @@ RUN rm /etc/apk/repositories; \
       wget \
       ca-certificates \
       curl \
-      make
+      make \
+      jq
 
 RUN pip3 install --no-cache --upgrade pip; \
     pip3 install --no-cache kubernetes
