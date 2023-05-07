@@ -1,6 +1,6 @@
 ARG APK_MAIN=https://dl-cdn.alpinelinux.org/alpine/v3.16/main
 ARG APK_COMMUNITY=https://dl-cdn.alpinelinux.org/alpine/v3.16/community
-ARG HELM_VERSION=3.7.1
+ARG HELM_VERSION=3.11.3
 ARG TARGETOS=linux
 ARG TARGETARCH=amd64
 
