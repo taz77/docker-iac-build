@@ -1,23 +1,13 @@
-ARG APK_MAIN=https://dl-cdn.alpinelinux.org/alpine/v3.16/main
-ARG APK_COMMUNITY=https://dl-cdn.alpinelinux.org/alpine/v3.16/community
 ARG HELM_VERSION=3.11.3
 ARG TARGETOS=linux
 ARG TARGETARCH=amd64
 
-FROM willhallonline/ansible:alpine
-ARG APK_MAIN
-ARG APK_COMMUNITY
+FROM alpine
 ARG HELM_VERSION
 ARG TARGETOS
 ARG TARGETARCH
-ENV APK_MAIN=${APK_MAIN} \
-    APK_COMMUNITY=${APK_COMMUNITY}
 
-RUN rm /etc/apk/repositories; \
-    echo $APK_MAIN > /etc/apk/repositories; \
-    echo $APK_COMMUNITY >> /etc/apk/repositories; \
-    cat /etc/apk/repositories; \
-    apk upgrade; \
+RUN apk upgrade; \
     apk upgrade --available; \
     set -eux; \
 	  apk add --no-cache \
@@ -25,11 +15,14 @@ RUN rm /etc/apk/repositories; \
       ca-certificates \
       curl \
       make \
-      jq
+      jq \
+      python3 \
+      py3-pip \
+      ansible
 
 RUN pip3 install --no-cache --upgrade pip; \
     pip3 install --no-cache kubernetes; \
-    pip3 install pip-review; \
+    pip3 install --no-cache pip-review; \
     pip-review --local --auto
 
 RUN wget -q https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -O - | tar -xzO ${TARGETOS}-${TARGETARCH}/helm > /usr/local/bin/helm \
