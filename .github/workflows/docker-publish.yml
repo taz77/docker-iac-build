@@ -6,7 +6,8 @@ on:
     - cron:  '0 0 * * 0'
   push:
     # Publish `master` as Docker `latest` image.
-    branches: master
+    branches:
+      - master
 
 jobs:
   main:
@@ -47,7 +48,7 @@ jobs:
         id: builder1
       - name: Build and push Latest
         id: docker_build1
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.builder1.outputs.name }}
           platforms: linux/amd64,linux/arm/v7
