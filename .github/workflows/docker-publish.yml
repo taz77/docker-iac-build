@@ -42,7 +42,7 @@ jobs:
           builder: ${{ steps.builder1.outputs.name }}
           push: true
           build-args: |
-            HELM_VERSION=3.7.1
+            HELM_VERSION=3.13.3
           tags: |
             bowens/docker-iac-builder:latest
             ghcr.io/taz77/docker-iac-builder:latest
