@@ -18,11 +18,11 @@ RUN apk upgrade; \
       jq \
       python3 \
       py3-pip \
-      ansible
+      ansible \
+      py3-kubernetes
 
-RUN pip3 install --no-cache --upgrade pip; \
-    pip3 install --no-cache kubernetes; \
-    pip3 install --no-cache pip-review; \
+RUN pip3 install --no-cache --break-system-packages --upgrade pip; \
+    pip3 install --no-cache --break-system-packages pip-review; \
     pip-review --local --auto
 
 RUN wget -q https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -O - | tar -xzO ${TARGETOS}-${TARGETARCH}/helm > /usr/local/bin/helm \
