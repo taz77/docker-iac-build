@@ -7,7 +7,7 @@ ARG HELM_VERSION
 ARG TARGETOS
 ARG TARGETARCH
 
-RUN apk upgrade; \
+RUN apk update; \
     apk upgrade --available; \
     set -eux; \
 	  apk add --no-cache \
