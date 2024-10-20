@@ -55,7 +55,7 @@ jobs:
           platforms: linux/amd64,linux/arm/v7
           push: true
           build-args: |
-            HELM_VERSION=3.12.3
+            HELM_VERSION=3.16.2
           tags: ${{ steps.docker_meta.outputs.tags }}
 
       - name: Notify Slack
