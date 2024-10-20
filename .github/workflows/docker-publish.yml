@@ -31,7 +31,7 @@ jobs:
             password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
         id: docker_meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v5
         with:
           images: |
             name=ghcr.io/taz77/docker-iac-builder
